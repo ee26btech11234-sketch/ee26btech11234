@@ -1,0 +1,133 @@
+\begin{enumerate}[label=\thesubsection.\arabic*, ref=\thesubsection.\theenumi]
+	
+	% Question 1: Limits & Series
+	\item \textbf{Exponential Series \& Trigonometric Half-Angle Identities:}
+	\begin{align}
+		e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots = 1 + x + O(x^2) \label{eq:exp_taylor}
+	\end{align}
+	\begin{align}
+		1 - \cos x = 2\sin^2\brak{\frac{x}{2}} \label{eq:half_angle_cos}
+	\end{align}
+	
+	% Question 2: Laplace Transform
+	\item \textbf{Laplace Transform Derivative \& Frequency Differentiation Rules:}
+	For a function $y(x)$ with Laplace transform $\mathcal{L}\{y(x)\} = Y(s)$:
+	\begin{align}
+		\mathcal{L}\{y'(x)\} = sY(s) - y(0), \quad \mathcal{L}\{x^n f(x)\} = (-1)^n \frac{d^n}{ds^n} F(s) \label{eq:laplace_diff_rules}
+	\end{align}
+	
+	% Question 3: Matrices
+	\item \textbf{Cayley-Hamilton Theorem ($2 \times 2$ Matrix):}
+	Every square matrix $\vec{A}$ satisfies its own characteristic equation:
+	\begin{align}
+		\vec{A}^2 - \text{Tr}(\vec{A})\vec{A} + \mydet{\vec{A}}\vec{I}_2 = \vec{0} \label{eq:cayley_hamilton_formula}
+	\end{align}
+	
+	% Question 4: Determinants
+	\item \textbf{Properties of Determinants:}
+	The value of a determinant remains unchanged under elementary row and column operations of the form $R_i \to R_i + k R_j$ and $C_i \to C_i + k C_j$ ($i \neq j$), and equals the product of diagonal entries when reduced to triangular form:
+	\begin{align}
+		\mydet{\vec{A}} = \prod_{i=1}^{n} a_{ii} \label{eq:det_prop_identity}
+	\end{align}
+	
+	% Question 5: Monotonicity
+	\item \textbf{First Derivative Test for Monotonicity:}
+	For a differentiable function $f(x)$ on an interval $I$:
+	\begin{align}
+		f'(x) \ge 0 \implies f(x) \text{ is increasing}, \quad f'(x) \le 0 \implies f(x) \text{ is decreasing} \label{eq:monotonicity_cond}
+	\end{align}
+	
+	% Question 6: Numerical Integration
+	\item \textbf{Composite Trapezoidal Rule:}
+	For a partition of $[a, b]$ into $N$ equal subintervals of width $h = \frac{b-a}{N}$ with nodes $x_k = a + kh$:
+	\begin{align}
+		\int_{a}^{b} f(x)\,dx \approx \frac{h}{2} \sbrak{f(x_0) + 2\sum_{k=1}^{N-1} f(x_k) + f(x_N)} \label{eq:trapezoidal_rule}
+	\end{align}
+	
+	% Question 7: Correlation
+	\item \textbf{Karl Pearson's Correlation Coefficient (Vector Form):}
+	For centered data vectors $\vec{u} = \vec{x} - \bar{x}\vec{1}$ and $\vec{v} = \vec{y} - \bar{y}\vec{1}$:
+	\begin{align}
+		r = \frac{\vec{u}^{\top}\vec{v}}{\norm{\vec{u}}\norm{\vec{v}}} \label{eq:karl_pearson_vec}
+	\end{align}
+	
+	% Question 8 & 9: Probability Mass Function
+	\item \textbf{Probability Mass Function (PMF) Formulation:}
+	For a discrete random variable $X$ over a uniform sample space of size $N$:
+	\begin{align}
+		p_X(k) = \pr{X = k} = \frac{\abs{\cbrak{\omega \in \Omega : X(\omega) = k}}}{N}, \quad \sum_{k} p_X(k) = 1 \label{eq:pmf_prob_def}
+	\end{align}
+	
+	% Question 10: Linear Systems
+	\item \textbf{Gauss Elimination Method:}
+	A linear system $\vec{A}\vec{x} = \vec{b}$ is solved by forming the augmented matrix $[\vec{A} \mid \vec{b}]$ and applying elementary row operations to reduce $\vec{A}$ to upper triangular (row echelon) form $\vec{U}$, followed by back-substitution:
+	\begin{align}
+		[\vec{A} \mid \vec{b}] \longrightarrow [\vec{U} \mid \vec{c}] \label{eq:gauss_elimination_def}
+	\end{align}
+	
+	% Question 11: Area Under Curves
+	\item \textbf{Area Enclosed Between Two Curves:}
+	For continuous functions $f(x) \ge g(x)$ on $[a, b]$:
+	\begin{align}
+		\text{Area} = \int_{a}^{b} \sbrak{f(x) - g(x)}\,dx \label{eq:area_between_curves}
+	\end{align}
+	
+	% Question 12: Vector Algebra & Bayes' Theorem
+	\item \textbf{Vector Dot Product \& Law of Cosines:}
+	For non-zero vectors $\vec{b}$ and $\vec{c}$ separated by angle $\theta$:
+	\begin{align}
+		\vec{b}^{\top}\vec{c} = \norm{\vec{b}}\norm{\vec{c}}\cos\theta \label{eq:vector_dot_cosine}
+	\end{align}
+	
+	% Question 13: Central Moments
+	\item \textbf{Central Moments from Raw Moments:}
+	Given raw moments $\mu_r'$ about an arbitrary point $A$:
+	\begin{align}
+		\mu_1 &= 0 \nonumber \\
+		\mu_2 &= \mu_2' - (\mu_1')^2 \nonumber \\
+		\mu_3 &= \mu_3' - 3\mu_2'\mu_1' + 2(\mu_1')^3 \nonumber \\
+		\mu_4 &= \mu_4' - 4\mu_3'\mu_1' + 6\mu_2'(\mu_1')^2 - 3(\mu_1')^4 \label{eq:central_moments_formula}
+	\end{align}
+	
+	% Question 14: Projectile Motion
+	\item \textbf{Equation of Trajectory of a Projectile:}
+	For a projectile launched at angle $\theta$ with horizontal range $R = \frac{u^2 \sin 2\theta}{g}$:
+	\begin{align}
+		y = x\tan\theta\brak{1 - \frac{x}{R}} \label{eq:projectile_trajectory}
+	\end{align}
+	
+	% Question 15: Vertical Motion & Marginal Cost
+	\item \textbf{Vertical Motion Under Gravity:}
+	For vertical projection with initial velocity $u$ against gravitational acceleration $g$:
+	\begin{align}
+		v^2 = u^2 - 2gH, \quad T = \frac{2u}{g} \label{eq:vertical_motion_gravity}
+	\end{align}
+	
+	% Question 16: Integration by Parts & Bowley's Skewness
+	\item \textbf{Integration by Parts \& Bowley's Coefficient of Skewness:}
+	\begin{align}
+		\int u\,dv = uv - \int v\,du, \quad S_b = \frac{Q_3 + Q_1 - 2Q_2}{Q_3 - Q_1} \label{eq:bowley_skewness}
+	\end{align}
+	
+	% Question 17: 3D Lines & Present Value
+	\item \textbf{3D Line Equations \& Present Value of Ordinary Annuity:}
+	A line passing through $\vec{x}_0 = \myvec{x_0 \\ y_0 \\ z_0}$ along direction vector $\vec{m} = \myvec{a \\ b \\ c}$:
+	\begin{align}
+		\frac{x - x_0}{a} = \frac{y - y_0}{b} = \frac{z - z_0}{c}, \quad \vec{r} = \vec{x}_0 + \lambda\vec{m} \label{eq:line_3d_symmetric_vec}
+	\end{align}
+	
+	% Question 18: Sphere-Plane Tangency & Poisson PMF
+	\item \textbf{Sphere-Plane Tangency Condition \& Poisson PMF:}
+	A plane $\vec{n}^{\top}\vec{x} = d$ touches a sphere of center $\vec{c}$ and radius $r$ if:
+	\begin{align}
+		\frac{\abs{\vec{n}^{\top}\vec{c} - d}}{\norm{\vec{n}}} = r, \quad p_X(k) = \frac{e^{-\lambda_P}\lambda_P^k}{k!} \label{eq:sphere_plane_tangency_formula}
+	\end{align}
+	
+	% Question 19: Static Equilibrium
+	\item \textbf{Static Equilibrium of Concurrent Coplanar Forces:}
+	For forces $\vec{F}_1, \vec{F}_2, \dots, \vec{F}_n$ acting at a point in equilibrium:
+	\begin{align}
+		\sum_{i=1}^{n} \vec{F}_i = \vec{0} \implies \sum_{i=1}^{n} F_{ix} = 0, \quad \sum_{i=1}^{n} F_{iy} = 0 \label{eq:static_equilibrium_forces}
+	\end{align}
+	
+\end{enumerate}
