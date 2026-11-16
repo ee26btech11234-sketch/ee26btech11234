@@ -1,133 +1,180 @@
 \begin{enumerate}[label=\thesubsection.\arabic*, ref=\thesubsection.\theenumi]
 	
-	% Question 1: Limits & Series
-	\item \textbf{Exponential Series \& Trigonometric Half-Angle Identities:}
+	% Question 1: Limits, Taylor Series & Half-Angle Identities
+	\item \textbf{Exponential Taylor Expansion \& Half-Angle Cosine Identity:}
+	Using the Taylor series expansion around $x = 0$ and trigonometric half-angle identities:
 	\begin{align}
-		e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots = 1 + x + O(x^2) \label{eq:exp_taylor}
+		e^x = 1 + x + \frac{x^2}{2!} + O\brak{x^3}, \quad 1 - \cos x = 2\sin^2\brak{\frac{x}{2}} \label{eq:exp_taylor}
 	\end{align}
+	Taking the square root yields the absolute value condition governing one-sided limits:
 	\begin{align}
-		1 - \cos x = 2\sin^2\brak{\frac{x}{2}} \label{eq:half_angle_cos}
-	\end{align}
-	
-	% Question 2: Laplace Transform
-	\item \textbf{Laplace Transform Derivative \& Frequency Differentiation Rules:}
-	For a function $y(x)$ with Laplace transform $\mathcal{L}\{y(x)\} = Y(s)$:
-	\begin{align}
-		\mathcal{L}\{y'(x)\} = sY(s) - y(0), \quad \mathcal{L}\{x^n f(x)\} = (-1)^n \frac{d^n}{ds^n} F(s) \label{eq:laplace_diff_rules}
+		\sqrt{1 - \cos x} = \sqrt{2}\abs{\sin\brak{\frac{x}{2}}} \label{eq:half_angle_cos}
 	\end{align}
 	
-	% Question 3: Matrices
-	\item \textbf{Cayley-Hamilton Theorem ($2 \times 2$ Matrix):}
-	Every square matrix $\vec{A}$ satisfies its own characteristic equation:
+	% Question 2: First-Order Cauchy-Euler ODE & Laplace Transform
+	\item \textbf{First-Order Cauchy-Euler Transformation \& Laplace Transform:}
+	Substituting $x = x_0 e^t$ ($t = \ln\brak{\frac{x}{x_0}}$, $x \ge x_0$) transforms $x\frac{dy}{dx} = \frac{dy}{dt}$. For $Y\brak{s} = \mathcal{L}\{y\brak{t}\}$ and unit step function $u\brak{t}$:
 	\begin{align}
-		\vec{A}^2 - \text{Tr}(\vec{A})\vec{A} + \mydet{\vec{A}}\vec{I}_2 = \vec{0} \label{eq:cayley_hamilton_formula}
+		\mathcal{L}\{y'\brak{t}\} = sY\brak{s} - y\brak{0}, \quad \mathcal{L}\{e^{at}u\brak{t}\} = \frac{1}{s - a} \label{eq:laplace_cauchy_euler}
+	\end{align}
+	The corresponding inverse Laplace transform pairs are:
+	\begin{align}
+		\mathcal{L}^{-1}\left\{\frac{1}{s - a}\right\} = e^{at}u\brak{t}, \quad \mathcal{L}^{-1}\left\{\frac{1}{s}\right\} = u\brak{t} \label{eq:inv_laplace_pairs}
 	\end{align}
 	
-	% Question 4: Determinants
-	\item \textbf{Properties of Determinants:}
-	The value of a determinant remains unchanged under elementary row and column operations of the form $R_i \to R_i + k R_j$ and $C_i \to C_i + k C_j$ ($i \neq j$), and equals the product of diagonal entries when reduced to triangular form:
+	% Question 3: Cayley-Hamilton Theorem
+	\item \textbf{Cayley-Hamilton Theorem:}
+	Every square matrix $\vec{A} \in \mathbb{R}^{2 \times 2}$ satisfies its own characteristic polynomial $\mydet{\vec{A} - \lambda\vec{I}_2} = 0$:
 	\begin{align}
-		\mydet{\vec{A}} = \prod_{i=1}^{n} a_{ii} \label{eq:det_prop_identity}
+		\vec{A}^2 - \text{Tr}\brak{\vec{A}}\vec{A} + \mydet{\vec{A}}\vec{I}_2 = \vec{0} \label{eq:cayley_hamilton_formula}
 	\end{align}
 	
-	% Question 5: Monotonicity
-	\item \textbf{First Derivative Test for Monotonicity:}
-	For a differentiable function $f(x)$ on an interval $I$:
+	% Question 4: Properties of Determinants
+	\item \textbf{Elementary Row/Column Operations on Determinants:}
+	Adding a scalar multiple of one row (or column) to another leaves the determinant unchanged, and the determinant of a lower/upper triangular matrix equals the product of its diagonal entries:
 	\begin{align}
-		f'(x) \ge 0 \implies f(x) \text{ is increasing}, \quad f'(x) \le 0 \implies f(x) \text{ is decreasing} \label{eq:monotonicity_cond}
+		R_i \to R_i + k R_j \implies \mydet{\vec{A}'} = \mydet{\vec{A}}, \quad \mydet{d_{11} & 0 & 0 \\ l_{21} & d_{22} & 0 \\ l_{31} & l_{32} & d_{33}} = d_{11}d_{22}d_{33} \label{eq:det_prop_identity}
 	\end{align}
 	
-	% Question 6: Numerical Integration
+	% Question 5: Monotonicity of Functions
+	\item \textbf{First-Derivative Monotonicity Criteria:}
+	For a differentiable function $f\brak{x}$ on an interval $I$:
+	\begin{align}
+		f'\brak{x} \ge 0 \implies f\brak{x} \text{ is increasing}, \quad f'\brak{x} \le 0 \implies f\brak{x} \text{ is decreasing} \label{eq:monotonicity_cond}
+	\end{align}
+	
+	% Question 6: Numerical Integration (Trapezoidal Rule)
 	\item \textbf{Composite Trapezoidal Rule:}
-	For a partition of $[a, b]$ into $N$ equal subintervals of width $h = \frac{b-a}{N}$ with nodes $x_k = a + kh$:
+	For a definite integral over $\sbrak{a, b}$ partitioned into $N$ subintervals of uniform width $h = \frac{b - a}{N}$ with nodes $x_k = a + kh$ and $y_k = f\brak{x_k}$:
 	\begin{align}
-		\int_{a}^{b} f(x)\,dx \approx \frac{h}{2} \sbrak{f(x_0) + 2\sum_{k=1}^{N-1} f(x_k) + f(x_N)} \label{eq:trapezoidal_rule}
+		\int_{a}^{b} f\brak{x}\,dx \approx \frac{h}{2}\sbrak{y_0 + 2\sum_{k=1}^{N-1} y_k + y_N} \label{eq:trapezoidal_rule}
 	\end{align}
 	
-	% Question 7: Correlation
-	\item \textbf{Karl Pearson's Correlation Coefficient (Vector Form):}
-	For centered data vectors $\vec{u} = \vec{x} - \bar{x}\vec{1}$ and $\vec{v} = \vec{y} - \bar{y}\vec{1}$:
+	% Question 7: Karl Pearson's Correlation Coefficient (Vector Form)
+	\item \textbf{Karl Pearson's Correlation Coefficient in Vector Notation:}
+	For data vectors $\vec{x}, \vec{y} \in \mathbb{R}^n$ with means $\bar{x} = \frac{\vec{1}^{\top}\vec{x}}{n}$, $\bar{y} = \frac{\vec{1}^{\top}\vec{y}}{n}$, and centered vectors $\vec{u} = \vec{x} - \bar{x}\vec{1}$, $\vec{v} = \vec{y} - \bar{y}\vec{1}$:
 	\begin{align}
 		r = \frac{\vec{u}^{\top}\vec{v}}{\norm{\vec{u}}\norm{\vec{v}}} \label{eq:karl_pearson_vec}
 	\end{align}
 	
-	% Question 8 & 9: Probability Mass Function
-	\item \textbf{Probability Mass Function (PMF) Formulation:}
-	For a discrete random variable $X$ over a uniform sample space of size $N$:
+	% Questions 8 & 9: Probability Mass Function (PMF)
+	\item \textbf{Discrete Probability Mass Function (PMF) Formulation:}
+	For a discrete random variable $X$ defined over sample space $\Omega$ of size $\abs{\Omega} = N$:
 	\begin{align}
-		p_X(k) = \pr{X = k} = \frac{\abs{\cbrak{\omega \in \Omega : X(\omega) = k}}}{N}, \quad \sum_{k} p_X(k) = 1 \label{eq:pmf_prob_def}
+		p_X\brak{k} = \pr{X = k} = \frac{\abs{\{\omega \in \Omega : X\brak{\omega} = k\}}}{N}, \quad \sum_{k} p_X\brak{k} = 1 \label{eq:pmf_prob_def}
 	\end{align}
 	
-	% Question 10: Linear Systems
-	\item \textbf{Gauss Elimination Method:}
-	A linear system $\vec{A}\vec{x} = \vec{b}$ is solved by forming the augmented matrix $[\vec{A} \mid \vec{b}]$ and applying elementary row operations to reduce $\vec{A}$ to upper triangular (row echelon) form $\vec{U}$, followed by back-substitution:
+	% Question 9: Complement & Union of Events via PMF
+	\item \textbf{Union and Complement via Indicator PMF:}
+	For events $A, B \subseteq \Omega$ and indicator random variable $X = \mathbb{I}\brak{A \cup B}$:
 	\begin{align}
-		[\vec{A} \mid \vec{b}] \longrightarrow [\vec{U} \mid \vec{c}] \label{eq:gauss_elimination_def}
+		p_X\brak{1} = \pr{A \cup B} = \pr{A} + \pr{B} - \pr{A \cap B}, \quad p_X\brak{0} = 1 - p_X\brak{1} \label{eq:pmf_union_comp}
 	\end{align}
 	
-	% Question 11: Area Under Curves
-	\item \textbf{Area Enclosed Between Two Curves:}
-	For continuous functions $f(x) \ge g(x)$ on $[a, b]$:
+	% Question 10: Gauss Elimination Method
+	\item \textbf{Gauss Elimination Using Augmented Matrices:}
+	A linear system $\vec{A}\vec{x} = \vec{b}$ is reduced via elementary row operations on $\augvec{1}{1}{\vec{A} & \vec{b}}$ to upper-triangular echelon form $\augvec{1}{1}{\vec{U} & \vec{c}}$ for back-substitution:
 	\begin{align}
-		\text{Area} = \int_{a}^{b} \sbrak{f(x) - g(x)}\,dx \label{eq:area_between_curves}
+		\augvec{1}{1}{\vec{A} & \vec{b}} \xrightarrow{\text{Row Operations}} \augvec{1}{1}{\vec{U} & \vec{c}} \label{eq:gauss_elimination_def}
 	\end{align}
 	
-	% Question 12: Vector Algebra & Bayes' Theorem
-	\item \textbf{Vector Dot Product \& Law of Cosines:}
-	For non-zero vectors $\vec{b}$ and $\vec{c}$ separated by angle $\theta$:
+	% Question 11: Conic Matrix Representation, Pencil of Conics & Area
+	\item \textbf{Matrix Pencil of Conics \& Area Between Curves:}
+	Two conics $S_i\brak{\vec{x}} = \vec{x}^{\top}\vec{V}_i\vec{x} + 2\vec{u}_i^{\top}\vec{x} + f_i = 0$ ($i = 1, 2$) form a pencil $S_1\brak{\vec{x}} + \mu S_2\brak{\vec{x}} = 0$, which degenerates into intersecting chords when:
 	\begin{align}
-		\vec{b}^{\top}\vec{c} = \norm{\vec{b}}\norm{\vec{c}}\cos\theta \label{eq:vector_dot_cosine}
+		\vec{V}_{\mu} = \vec{V}_1 + \mu\vec{V}_2, \quad \vec{u}_{\mu} = \vec{u}_1 + \mu\vec{u}_2, \quad f_{\mu} = f_1 + \mu f_2 \label{eq:pencil_conics}
+	\end{align}
+	\begin{align}
+		\mydet{\vec{V}_{\mu} & \vec{u}_{\mu} \\ \vec{u}_{\mu}^{\top} & f_{\mu}} = 0 \label{eq:degenerate_conic_det}
+	\end{align}
+	The area enclosed between upper curve $y_{\text{upper}}\brak{x}$ and lower curve $y_{\text{lower}}\brak{x}$ over $\sbrak{a, b}$ is:
+	\begin{align}
+		\text{Area} = \int_{a}^{b} \brak{y_{\text{upper}}\brak{x} - y_{\text{lower}}\brak{x}}\,dx \label{eq:area_between_curves}
 	\end{align}
 	
-	% Question 13: Central Moments
-	\item \textbf{Central Moments from Raw Moments:}
-	Given raw moments $\mu_r'$ about an arbitrary point $A$:
+	% Question 12: Vector Dot Product & Conditional PMF
+	\item \textbf{Vector Cosine Identity \& Conditional PMF:}
+	For triangle side vectors satisfying $\vec{a} + \vec{b} + \vec{c} = \vec{0}$ ($\vec{a} = -\brak{\vec{b} + \vec{c}}$), taking the self-dot product yields:
 	\begin{align}
-		\mu_1 &= 0 \nonumber \\
-		\mu_2 &= \mu_2' - (\mu_1')^2 \nonumber \\
-		\mu_3 &= \mu_3' - 3\mu_2'\mu_1' + 2(\mu_1')^3 \nonumber \\
-		\mu_4 &= \mu_4' - 4\mu_3'\mu_1' + 6\mu_2'(\mu_1')^2 - 3(\mu_1')^4 \label{eq:central_moments_formula}
+		\norm{\vec{a}}^2 = \norm{\vec{b}}^2 + \norm{\vec{c}}^2 + 2\vec{b}^{\top}\vec{c} \implies a^2 = b^2 + c^2 - 2bc\cos A \implies \cos A = \frac{b^2 + c^2 - a^2}{2bc} \label{eq:vector_dot_cosine}
+	\end{align}
+	For a discrete random variable $B$ with prior PMF $p_B\brak{b}$ and conditional PMF $p_{E|B}\brak{e|b}$, the posterior PMF is:
+	\begin{align}
+		p_{B|E}\brak{b|e} = \frac{p_B\brak{b}\,p_{E|B}\brak{e|b}}{\sum_{k} p_B\brak{k}\,p_{E|B}\brak{e|k}} \label{eq:posterior_pmf_formula}
 	\end{align}
 	
-	% Question 14: Projectile Motion
-	\item \textbf{Equation of Trajectory of a Projectile:}
-	For a projectile launched at angle $\theta$ with horizontal range $R = \frac{u^2 \sin 2\theta}{g}$:
+	% Question 13: Central Moments from Raw Moments
+	\item \textbf{Central Moments in Terms of Raw Moments:}
+	Given raw moments $\mu_r' = \mathbb{E}\sbrak{\brak{X - A}^r}$ about an arbitrary point $A$, the first four central moments $\mu_r = \mathbb{E}\sbrak{\brak{X - \mu}^r}$ about the mean $\mu = A + \mu_1'$ are:
 	\begin{align}
-		y = x\tan\theta\brak{1 - \frac{x}{R}} \label{eq:projectile_trajectory}
+		\mu_1 &= 0, \quad \mu_2 = \mu_2' - \brak{\mu_1'}^2 \nonumber \\
+		\mu_3 &= \mu_3' - 3\mu_2'\mu_1' + 2\brak{\mu_1'}^3, \quad \mu_4 = \mu_4' - 4\mu_3'\mu_1' + 6\mu_2'\brak{\mu_1'}^2 - 3\brak{\mu_1'}^4 \label{eq:central_moments_formula}
 	\end{align}
 	
-	% Question 15: Vertical Motion & Marginal Cost
-	\item \textbf{Vertical Motion Under Gravity:}
-	For vertical projection with initial velocity $u$ against gravitational acceleration $g$:
+	% Question 14: Projectile Motion & Partnership Profit Sharing
+	\item \textbf{Projectile Trajectory \& Partnership Profit Sharing:}
+	Eliminating time $t = \frac{x}{u\cos\theta}$ from $x = \brak{u\cos\theta}t$ and $y = \brak{u\sin\theta}t - \frac{1}{2}gt^2$, with horizontal range $R = \frac{u^2\sin 2\theta}{g}$:
 	\begin{align}
-		v^2 = u^2 - 2gH, \quad T = \frac{2u}{g} \label{eq:vertical_motion_gravity}
+		y = x\tan\theta - \frac{gx^2}{2u^2\cos^2\theta} = x\tan\theta\brak{1 - \frac{x}{R}} \label{eq:projectile_trajectory}
+	\end{align}
+	For partners with capital vector $\vec{k}$ invested for duration vector $\vec{t}$, the effective capital-months vector is $\vec{c} = \vec{k} \odot \vec{t}$ (Hadamard product). For total profit $P$, the profit-sharing vector $\vec{p}$ is:
+	\begin{align}
+		\vec{p} = \frac{P}{\vec{1}^{\top}\vec{c}}\,\vec{c} = \frac{P}{\vec{1}^{\top}\vec{r}}\,\vec{r} \label{eq:partnership_profit_vec}
 	\end{align}
 	
-	% Question 16: Integration by Parts & Bowley's Skewness
-	\item \textbf{Integration by Parts \& Bowley's Coefficient of Skewness:}
+	% Question 15: Vertical Motion, Marginal Cost & Newton-Raphson Method
+	\item \textbf{Vertical Motion Under Gravity \& Newton-Raphson Optimization:}
+	Integrating $\frac{dv}{dt} = -g$ gives $v = u - gt$, so ascent time is $t_a = \frac{u}{g}$ and total time of flight is $T = 2t_a$. Integrating $v\frac{dv}{dy} = -g$ from $y = 0$ to maximum height $H$ (where $v = 0$) gives:
 	\begin{align}
-		\int u\,dv = uv - \int v\,du, \quad S_b = \frac{Q_3 + Q_1 - 2Q_2}{Q_3 - Q_1} \label{eq:bowley_skewness}
+		u = \sqrt{2gH}, \quad T = \frac{2u}{g} \label{eq:vertical_motion_gravity}
+	\end{align}
+	For a cost function $C\brak{x}$, marginal cost $MC\brak{x} = \frac{dC}{dx}$ is minimized at the root $f\brak{x} = MC'\brak{x} = 0$ (with $MC''\brak{x} > 0$) via the Newton-Raphson iteration:
+	\begin{align}
+		x_{n+1} = x_n - \frac{f\brak{x_n}}{f'\brak{x_n}} = x_n - \frac{MC'\brak{x_n}}{MC''\brak{x_n}} \label{eq:newton_raphson_opt}
 	\end{align}
 	
-	% Question 17: 3D Lines & Present Value
-	\item \textbf{3D Line Equations \& Present Value of Ordinary Annuity:}
-	A line passing through $\vec{x}_0 = \myvec{x_0 \\ y_0 \\ z_0}$ along direction vector $\vec{m} = \myvec{a \\ b \\ c}$:
+	% Question 16: Cauchy-Euler Substitution, Second-Order Laplace Transform & Bowley's Skewness
+	\item \textbf{Second-Order Laplace Transform \& Bowley's Coefficient of Skewness:}
+	Setting $x = e^t$ ($t = \ln x$), the chain rule gives $\frac{dy}{dx} = e^{-t}\frac{dy}{dt}$ and $\frac{d^2y}{dx^2} = e^{-2t}\brak{\frac{d^2y}{dt^2} - \frac{dy}{dt}}$. For $Y\brak{s} = \mathcal{L}\{y\brak{t}\}$:
 	\begin{align}
-		\frac{x - x_0}{a} = \frac{y - y_0}{b} = \frac{z - z_0}{c}, \quad \vec{r} = \vec{x}_0 + \lambda\vec{m} \label{eq:line_3d_symmetric_vec}
+		\mathcal{L}\{y''\brak{t}\} = s^2 Y\brak{s} - sy\brak{0} - y'\brak{0}, \quad \mathcal{L}\{t^n e^{at}u\brak{t}\} = \frac{n!}{\brak{s-a}^{n+1}} \label{eq:laplace_second_order}
+	\end{align}
+	Quartile asymmetry defines Bowley's coefficient of skewness $S_b$:
+	\begin{align}
+		S_b = \frac{\brak{Q_3 - Q_2} - \brak{Q_2 - Q_1}}{\brak{Q_3 - Q_2} + \brak{Q_2 - Q_1}} = \frac{Q_3 + Q_1 - 2Q_2}{Q_3 - Q_1} \label{eq:bowley_skewness}
 	\end{align}
 	
-	% Question 18: Sphere-Plane Tangency & Poisson PMF
-	\item \textbf{Sphere-Plane Tangency Condition \& Poisson PMF:}
-	A plane $\vec{n}^{\top}\vec{x} = d$ touches a sphere of center $\vec{c}$ and radius $r$ if:
+	% Question 17: 3D Lines in Vector Form & Present Value of Annuity
+	\item \textbf{3D Line Vector Representation \& Present Value of Ordinary Annuity:}
+	A line passing through position vector $\vec{x}_0$ along direction vector $\vec{m}$ has symmetric and parametric forms:
 	\begin{align}
-		\frac{\abs{\vec{n}^{\top}\vec{c} - d}}{\norm{\vec{n}}} = r, \quad p_X(k) = \frac{e^{-\lambda_P}\lambda_P^k}{k!} \label{eq:sphere_plane_tangency_formula}
+		\frac{x - x_0}{m_1} = \frac{y - y_0}{m_2} = \frac{z - z_0}{m_3}, \quad \vec{r} = \vec{x}_0 + \lambda\vec{m}, \quad \lambda \in \mathbb{R} \label{eq:line_3d_symmetric_vec}
+	\end{align}
+	The present value $P$ of an ordinary annuity paying $R$ per period for $n$ periods at interest rate $i$ per period is:
+	\begin{align}
+		P = R\sbrak{\frac{1 - \brak{1 + i}^{-n}}{i}} \label{eq:annuity_pv_formula}
 	\end{align}
 	
-	% Question 19: Static Equilibrium
-	\item \textbf{Static Equilibrium of Concurrent Coplanar Forces:}
-	For forces $\vec{F}_1, \vec{F}_2, \dots, \vec{F}_n$ acting at a point in equilibrium:
+	% Question 18: Line-Quadric Intersection & Poisson PMF
+	\item \textbf{Line-Quadric Intersection \& Poisson PMF:}
+	Substituting the line $\vec{x} = \vec{h} + \kappa\vec{m}$ into the quadric surface $g\brak{\vec{x}} = \vec{x}^{\top}\vec{V}\vec{x} + 2\vec{u}^{\top}\vec{x} + f = 0$ yields the intersection parameters:
 	\begin{align}
-		\sum_{i=1}^{n} \vec{F}_i = \vec{0} \implies \sum_{i=1}^{n} F_{ix} = 0, \quad \sum_{i=1}^{n} F_{iy} = 0 \label{eq:static_equilibrium_forces}
+		\kappa_i = \frac{1}{\vec{m}^{\top}\vec{V}\vec{m}}\brak{-\vec{m}^{\top}\brak{\vec{V}\vec{h} + \vec{u}} \pm \sqrt{\sbrak{\vec{m}^{\top}\brak{\vec{V}\vec{h} + \vec{u}}}^2 - g\brak{\vec{h}}\brak{\vec{m}^{\top}\vec{V}\vec{m}}}} \label{eq:line_conic_inter}
+	\end{align}
+	For rare independent events with mean rate $\lambda_P = np$, the Poisson PMF is:
+	\begin{align}
+		p_X\brak{k} = \pr{X = k} = \frac{e^{-\lambda_P}\lambda_P^k}{k!}, \quad k = 0, 1, 2, \dots \label{eq:poisson_pmf_formula}
+	\end{align}
+	
+	% Question 19: Static Equilibrium, Beam Moments & Linear Programming
+	\item \textbf{Static Equilibrium, Beam Moments \& Linear Programming:}
+	For coplanar forces $\vec{P}, \vec{Q}, \vec{R}$ in static equilibrium and parallel forces $\vec{F}_k$ at position vectors $\vec{r}_k$:
+	\begin{align}
+		\vec{P} + \vec{Q} + \vec{R} = \vec{0}, \quad \sum_{k} \vec{F}_k = \vec{0}, \quad \sum_{k} \vec{r}_k^{\top}\vec{J}\vec{F}_k = 0 \label{eq:static_equilibrium_forces}
+	\end{align}
+	where $\vec{J} = \myvec{0 & -1 \\ 1 & 0}$ is the $90^\circ$ planar rotation matrix. For linear programming problems with objective vector $\vec{c}$ and constraint system $\vec{A}, \vec{b}$:
+	\begin{align}
+		\min_{\vec{x}} / \max_{\vec{x}} \quad \vec{c}^{\top}\vec{x} \quad \text{subject to} \quad \vec{A}\vec{x} \preceq \vec{b} \text{ (or } \succeq \vec{b}\text{)}, \quad \vec{x} \succeq \vec{0} \label{eq:lpp_cvxpy_form}
 	\end{align}
 	
 \end{enumerate}
